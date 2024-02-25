@@ -1,0 +1,59 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center">
+
+    <div class="col-md-12">
+      
+      <div class="jumbotron text-center p-4">
+        <h2>Gitlab Oauth Login</h2>
+        {% if user %}
+        <h4>Logged in as <strong>{{user}}</strong></h4>
+        <p><a class="btn btn-danger" type="button" href="{{ url_for('.logout') }}">Log Out</a></p>
+        {% if user.superuser %}
+        <p><a class="btn btn-success" type="button" href="{{ url_for('.create_client') }}">Create Client</a></p>
+        {% endif %}
+        {% else %}
+        <div class="well">
+        {% include "login_form.html" %}
+        </div> 
+        {% endif %}      
+      </div>
+    
+    </div>
+
+    <div class="col-md-12">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}" role="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    </div>
+
+    {% if user.superuser %}
+    <div class="col-md-12">
+      {% for client in clients %}
+      <pre>
+      <strong>Client Info</strong>
+        {%- for key in client.client_info %}
+        <strong>{{ key }}: </strong>{{ client.client_info[key] }}
+        {%- endfor %}
+      <strong>Client Metadata</strong>
+        {%- for key in client.client_metadata %}
+        <strong>{{ key }}: </strong>{{ client.client_metadata[key] }}
+        {%- endfor %}
+      </pre>
+      <hr>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}

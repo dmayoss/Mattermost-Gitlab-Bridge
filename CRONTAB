@@ -1,0 +1,2 @@
+@reboot daemon -p oauth_c.pid -P oauth_d.pid -o oauth_daemon.log -R 2 -f /path/to/gitlab-oauth2-server/venv/bin/gunicorn -c /path/to/gitlab-oauth2-server/gunicorn/dev.py --chdir /path/to/gitlab-oauth2-server
+

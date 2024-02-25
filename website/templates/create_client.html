@@ -1,0 +1,62 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+
+{% if user.superuser %}
+
+<div class="container justify-content-center">
+
+<div class="row">
+
+<div class="col-md-12">
+
+<div class="well p-4">
+
+<form action="" method="post">
+  <div class="form-group">
+    <label>Client Name</label>
+    <input type="text" name="client_name" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Client URI</label>
+    <input type="url" name="client_uri" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Allowed Scope</label>
+    <input type="text" name="scope" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Redirect URIs</label>
+    <textarea name="redirect_uri" cols="30" rows="10" class="form-control"></textarea>
+  </div>
+  <div class="form-group">
+    <label>Allowed Grant Types</label>
+    <textarea name="grant_type" cols="30" rows="10" class="form-control"></textarea>
+  </div>
+  <div class="form-group">
+    <label>Allowed Response Types</label>
+    <textarea name="response_type" cols="30" rows="10" class="form-control"></textarea>
+  </div>
+  <div class="form-group">
+    <label>Token Endpoint Auth Method</label>
+    <select name="token_endpoint_auth_method" class="form-control">
+      <option value="client_secret_basic">client_secret_basic</option>
+      <option value="client_secret_post">client_secret_post</option>
+      <option value="none">none</option>
+    </select>
+  </div>
+  <p><button class="btn btn-success">Submit</button></p>
+  <p><a class="btn btn-primary" type="button" href="/">Home</a></p>
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

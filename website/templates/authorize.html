@@ -1,0 +1,44 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-12">
+      <div class="jumbotron text-center p-4">
+        <h2>Mattermost Authorization</h2>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+    {% if user %}
+    <div class="row">
+      <div class="col-md-12">
+        <p class="justify-content-center">
+          You are requesting access to <Strong>Mattermost</Strong> for <Strong>{{ user }}</Strong>.
+        </p>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-md-12">
+        <p class="justify-content-center">
+          <form action="" method="POST">
+              <div class="form-group">
+                  <button class="btn btn-success" type="submit" name="confirm" value="confirm">Accept</button>
+                  <button class="btn btn-danger" type="submit" name="confirm" value="deny">Deny</button>
+                  <a href="/" class="btn btn-primary">Cancel</a>
+              </div>
+          </form>
+        </p>
+      </div>
+    </div>
+    {% else %}
+
+    {% include "login_form.html" %}
+
+    {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
